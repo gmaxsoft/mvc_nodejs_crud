@@ -1,29 +1,29 @@
 # Node.js MVC CRUD Application
 
-Aplikacja CRUD (Create, Read, Update, Delete) zbudowana w architekturze MVC (Model-View-Controller) używając Node.js, Express.js i MongoDB. Projekt zawiera pełny system autoryzacji z JWT, role użytkowników oraz RESTful API.
+A CRUD (Create, Read, Update, Delete) application built using the MVC (Model-View-Controller) architecture with Node.js, Express.js, and MongoDB. The project includes a complete JWT authentication system, user roles, and RESTful API.
 
-## 🚀 Funkcjonalności
+## 🚀 Features
 
-- ✅ **CRUD Operations** - Pełne operacje na danych (pracownicy, użytkownicy)
-- ✅ **JWT Authentication** - Bezpieczna autoryzacja z tokenami JWT
-- ✅ **Role-Based Access Control (RBAC)** - System ról (Admin, Editor, User)
-- ✅ **Refresh Tokens** - Odświeżanie tokenów przez cookies
-- ✅ **Password Hashing** - Haszowanie haseł z bcrypt
-- ✅ **CORS Support** - Konfiguracja Cross-Origin Resource Sharing
-- ✅ **Error Handling** - Centralna obsługa błędów
-- ✅ **Request Logging** - Logowanie żądań HTTP
-- ✅ **MongoDB Integration** - Integracja z MongoDB przez Mongoose
+- ✅ **CRUD Operations** - Full data operations (employees, users)
+- ✅ **JWT Authentication** - Secure authentication with JWT tokens
+- ✅ **Role-Based Access Control (RBAC)** - User role system (Admin, Editor, User)
+- ✅ **Refresh Tokens** - Token refresh via cookies
+- ✅ **Password Hashing** - Password hashing with bcrypt
+- ✅ **CORS Support** - Cross-Origin Resource Sharing configuration
+- ✅ **Error Handling** - Centralized error handling
+- ✅ **Request Logging** - HTTP request logging
+- ✅ **MongoDB Integration** - MongoDB integration via Mongoose
 
-## 📋 Wymagania
+## 📋 Requirements
 
-- Node.js (wersja 20.x)
-- MongoDB (lokalna instalacja lub MongoDB Atlas)
-- npm lub yarn
+- Node.js (version 20.x)
+- MongoDB (local installation or MongoDB Atlas)
+- npm or yarn
 
-## 🛠️ Technologie
+## 🛠️ Technologies
 
 - **Backend Framework:** Express.js
-- **Database:** MongoDB z Mongoose
+- **Database:** MongoDB with Mongoose
 - **Authentication:** JSON Web Tokens (JWT)
 - **Password Hashing:** bcrypt
 - **Environment Variables:** dotenv
@@ -31,54 +31,54 @@ Aplikacja CRUD (Create, Read, Update, Delete) zbudowana w architekturze MVC (Mod
 - **Cookies:** cookie-parser
 - **Utilities:** uuid, date-fns
 
-## 📦 Instalacja
+## 📦 Installation
 
-1. **Sklonuj repozytorium**
+1. **Clone the repository**
 
 ```bash
 git clone https://github.com/gmaxsoft/mvc_nodejs_crud.git
 cd mvc_nodejs_crud
 ```
 
-2. **Zainstaluj zależności**
+2. **Install dependencies**
 
 ```bash
 npm install
 ```
 
-3. **Skonfiguruj zmienne środowiskowe**
+3. **Configure environment variables**
 
-Utwórz plik `.env` w głównym katalogu projektu i dodaj następujące zmienne:
+Create a `.env` file in the project root directory and add the following variables:
 
 ```env
 PORT=3500
-DATABASE_URI=mongodb://localhost:27017/nazwa_bazy_danych
-# lub dla MongoDB Atlas:
-# DATABASE_URI=mongodb+srv://username:password@cluster.mongodb.net/nazwa_bazy_danych
+DATABASE_URI=mongodb://localhost:27017/database_name
+# or for MongoDB Atlas:
+# DATABASE_URI=mongodb+srv://username:password@cluster.mongodb.net/database_name
 
-# JWT Secret (wygeneruj bezpieczny losowy string)
-ACCESS_TOKEN_SECRET=twoj_secret_key_dla_access_token
-REFRESH_TOKEN_SECRET=twoj_secret_key_dla_refresh_token
+# JWT Secret (generate a secure random string)
+ACCESS_TOKEN_SECRET=your_secret_key_for_access_token
+REFRESH_TOKEN_SECRET=your_secret_key_for_refresh_token
 ```
 
-4. **Uruchom serwer**
+4. **Start the server**
 
 ```bash
-# Tryb produkcyjny
+# Production mode
 npm start
 
-# Tryb deweloperski (z auto-reload)
+# Development mode (with auto-reload)
 npm run dev
 ```
 
-Serwer będzie dostępny pod adresem: `http://localhost:3500`
+The server will be available at: `http://localhost:3500`
 
-## 📁 Struktura projektu
+## 📁 Project Structure
 
 ```
 mvc_nodejs_crud/
 ├── app/
-│   ├── controllers/          # Kontrolery (logika biznesowa)
+│   ├── controllers/          # Controllers (business logic)
 │   │   ├── authController.js
 │   │   ├── employeesController.js
 │   │   ├── logoutController.js
@@ -91,12 +91,12 @@ mvc_nodejs_crud/
 │   │   ├── logEvents.js
 │   │   ├── verifyJWT.js
 │   │   └── verifyRoles.js
-│   ├── model/               # Modele danych
+│   ├── model/               # Data models
 │   │   ├── Employee.js
 │   │   ├── User.js
 │   │   ├── employees.json
 │   │   └── users.json
-│   ├── routes/              # Definicje tras
+│   ├── routes/              # Route definitions
 │   │   ├── api/
 │   │   │   ├── employees.js
 │   │   │   └── users.js
@@ -105,93 +105,96 @@ mvc_nodejs_crud/
 │   │   ├── refresh.js
 │   │   ├── register.js
 │   │   └── root.js
-│   └── views/               # Widoki HTML
+│   └── views/               # HTML views
 │       ├── 404.html
 │       └── index.html
-├── config/                  # Konfiguracja
+├── config/                  # Configuration
 │   ├── allowedOrigins.js
 │   ├── corsOptions.js
 │   ├── dbConn.js
 │   └── roles_list.js
-├── public/                  # Pliki statyczne
+├── public/                  # Static files
 │   └── assets/
 │       ├── css/
 │       └── js/
-├── server.js                # Główny plik serwera
+├── tests/                   # Unit tests
+│   ├── controllers/
+│   └── setup.js
+├── server.js                # Main server file
 ├── package.json
 └── README.md
 ```
 
 ## 🔌 API Endpoints
 
-### Autoryzacja (Publiczne)
+### Authentication (Public)
 
-- `POST /register` - Rejestracja nowego użytkownika
-- `POST /auth` - Logowanie (zwraca access token i refresh token)
-- `GET /refresh` - Odświeżanie access token
-- `POST /logout` - Wylogowanie
+- `POST /register` - Register a new user
+- `POST /auth` - Login (returns access token and refresh token)
+- `GET /refresh` - Refresh access token
+- `POST /logout` - Logout
 
-### Pracownicy (Wymaga JWT)
+### Employees (Requires JWT)
 
-- `GET /employees` - Pobierz wszystkich pracowników
-- `GET /employees/:id` - Pobierz pracownika po ID
-- `POST /employees` - Utwórz nowego pracownika (Admin, Editor)
-- `PUT /employees` - Aktualizuj pracownika (Admin, Editor)
-- `DELETE /employees` - Usuń pracownika (Admin)
+- `GET /employees` - Get all employees
+- `GET /employees/:id` - Get employee by ID
+- `POST /employees` - Create new employee (Admin, Editor)
+- `PUT /employees` - Update employee (Admin, Editor)
+- `DELETE /employees` - Delete employee (Admin)
 
-### Użytkownicy (Wymaga JWT)
+### Users (Requires JWT)
 
-- `GET /users` - Pobierz wszystkich użytkowników
-- `GET /users/:id` - Pobierz użytkownika po ID
-- `POST /users` - Utwórz nowego użytkownika
-- `PUT /users` - Aktualizuj użytkownika
-- `DELETE /users` - Usuń użytkownika
+- `GET /users` - Get all users
+- `GET /users/:id` - Get user by ID
+- `POST /users` - Create new user
+- `PUT /users` - Update user
+- `DELETE /users` - Delete user
 
-## 🔐 Role użytkowników
+## 🔐 User Roles
 
-- **Admin** - Pełny dostęp do wszystkich operacji
-- **Editor** - Może tworzyć i edytować, ale nie usuwać
-- **User** - Tylko odczyt danych
+- **Admin** - Full access to all operations
+- **Editor** - Can create and edit, but cannot delete
+- **User** - Read-only access to data
 
-## 📝 Przykłady użycia API
+## 📝 API Usage Examples
 
-### Rejestracja użytkownika
+### User Registration
 
 ```bash
 POST /register
 Content-Type: application/json
 
 {
-  "username": "jan_kowalski",
-  "password": "haslo123",
+  "username": "john_doe",
+  "password": "password123",
   "roles": ["User"]
 }
 ```
 
-### Logowanie
+### Login
 
 ```bash
 POST /auth
 Content-Type: application/json
 
 {
-  "username": "jan_kowalski",
-  "password": "haslo123"
+  "username": "john_doe",
+  "password": "password123"
 }
 ```
 
-Odpowiedź zawiera:
-- `accessToken` - token dostępowy (krótki czas życia)
-- `refreshToken` - token odświeżający (dłuższy czas życia, zapisywany w cookie)
+Response contains:
+- `accessToken` - Access token (short lifetime)
+- `refreshToken` - Refresh token (longer lifetime, stored in cookie)
 
-### Pobranie pracowników (z tokenem)
+### Get Employees (with token)
 
 ```bash
 GET /employees
 Authorization: Bearer <access_token>
 ```
 
-### Utworzenie pracownika (Admin/Editor)
+### Create Employee (Admin/Editor)
 
 ```bash
 POST /employees
@@ -199,44 +202,58 @@ Authorization: Bearer <access_token>
 Content-Type: application/json
 
 {
-  "firstname": "Jan",
-  "lastname": "Kowalski",
+  "firstname": "John",
+  "lastname": "Doe",
   "position": "Developer"
 }
 ```
 
-## 🔒 Bezpieczeństwo
+## 🧪 Testing
 
-- Hasła są haszowane przy użyciu bcrypt
-- JWT tokens z podpisem cyfrowym
-- Refresh tokens przechowywane w bezpiecznych cookies
+Run unit tests with:
+
+```bash
+npm test
+```
+
+Run tests in watch mode:
+
+```bash
+npm run test:watch
+```
+
+## 🔒 Security
+
+- Passwords are hashed using bcrypt
+- JWT tokens with digital signature
+- Refresh tokens stored in secure cookies
 - Role-based access control (RBAC)
-- CORS skonfigurowany dla bezpiecznych żądań
-- Walidacja danych wejściowych
+- CORS configured for secure requests
+- Input data validation
 
-## 🐛 Rozwiązywanie problemów
+## 🐛 Troubleshooting
 
-### Problem z połączeniem do MongoDB
+### MongoDB Connection Issues
 
-Upewnij się, że:
-- MongoDB jest uruchomiony lokalnie lub masz dostęp do MongoDB Atlas
-- `DATABASE_URI` w pliku `.env` jest poprawnie skonfigurowany
-- Masz odpowiednie uprawnienia do bazy danych
+Make sure:
+- MongoDB is running locally or you have access to MongoDB Atlas
+- `DATABASE_URI` in the `.env` file is correctly configured
+- You have appropriate database permissions
 
-### Błędy autoryzacji
+### Authentication Errors
 
-- Sprawdź czy token JWT jest poprawnie wysyłany w nagłówku `Authorization`
-- Upewnij się, że token nie wygasł
-- Sprawdź czy użytkownik ma odpowiednie role do wykonania operacji
+- Check if the JWT token is correctly sent in the `Authorization` header
+- Make sure the token has not expired
+- Verify that the user has the appropriate roles to perform the operation
 
-## 📄 Licencja
+## 📄 License
 
-Ten projekt jest licencjonowany na licencji GPL-3.0-only.
+This project is licensed under the GPL-3.0-only license.
 
-## 👤 Autor
+## 👤 Author
 
-Maxsoft - Projekt stworzony jako przykład aplikacji MVC w Node.js.
+Maxsoft - Project created as an example of an MVC application in Node.js.
 
-## ⭐ Podziękowania
+## ⭐ Acknowledgments
 
-Jeśli ten projekt jest dla Ciebie przydatny, rozważ postawienie gwiazdki ⭐!
+If this project is useful to you, consider giving it a star ⭐!
